@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>4</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>500</x>
+      <y>0</y>
+      <w>216</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Simulateur
+--
+-ma_piece: Piece;
+-j1: Avatar;
+-j2: Avatar;
+-obj_meca(1,2,3,4): Objet_meca
+-obj_menu(1,2,3): Objet
+-obj_elec(1,2,3): Objet_elec
+-obj_arme(1,2): Objet_arme
++Context: typedef struct
+
+--
+Simulateur()
+menu(SDL_Rect souris): void
++menu_aide_options(): void
++menu_leader(): void
++single_player(SDL_Rect souris): int
++change_niveau(Avatar *j,int arme,int elec,int meca): void
++UpdateEvents(char* keys): void
++Blit(SDL_Surface* src,SDL_Surface* dst,int x,int y): int
++LoadAll(Context* C,Avatar* j1,Avatar* j2,int nb_obj);
++InitialisationSprites(Context* C): int
++Initialisation(Context* C,int x,int y,int nb_sprite,Avatar* j1,Avatar* j2,int nb_obj): int
++Destruct(Context* C): int
++Refresh(Context* C,char* key): void
++Affiche(Context* C): void
++multi_player(SDL_Rect souris): int
++affiche_meca(Avatar* j1,Piece* ma_piece,SDL_Surface* ecran,int i): void
++affiche_elec(Avatar* j1,Piece* ma_piece,SDL_Surface* ecran,int i): void
++affiche_arme(Avatar* j1,Piece* ma_piece,SDL_Surface* ecran,int i): void
++PrintSDL(SDL_Surface* font,SDL_Surface* dest,int x,int y,char* text,...): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>484</x>
+      <y>236</y>
+      <w>144</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Avatar
+/AbstractClass/
+--
+#niveau;
+#life:	int 
+#nb_meca:	int 
+#nb_elec:	int 
+#nb_arme:	int 
+#image:	SDL_Surface *
+#position:	SDL_Surface *
+--
+Avatar()
+Avatar(int niveau,std::string path,int x,int y)
+~Avatar()
++get_niveau() const:	int 
++get_image(): SDL_Surface* 
++maj_niveau(): 	void 
++set_image(std::string path): 	void 
++touch_object(Piece &amp;room): void 
++set_x(const int x1): void 
++set_y(const int y1): void 
++set_x1(): virtual void;
++set_y1()=0: virtual void;
++get_position(): SDL_Rect* 
++get_nb_meca(): const int 
++get_nb_elec(): const int 
++get_nb_arme(): const int 
++set_nb_meca(const int m): void 
++set_nb_elec(const int e): void 
++set_nb_arme(const int a): void
++get_life():	const int 
++set_life(const int l): void
++move_aleatoire(const int mode_IA,Piece *room): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>276</x>
+      <y>236</y>
+      <w>152</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Piece
+--
+-position: SDL_Rect 
+-largeur: int
+-longueur: int
+-fond: SDL_Surface *
+-tab_objet: list&lt;Objet&gt;
+--
+Piece();
+Piece(int large,int longe,std::string path);
+~Piece();
++get_tab(): list&lt;Objet&gt;
++get_largeur() const: int
++get_longueur() const: int
++get_taille_tab() const: int
++set_largeur(const int large1): void
++set_longueur(const int longe1): void
++add_objet(Objet &amp;obj): void
++remove_objet(const int indice): void
++get_image_obj(const int indice): SDL_Surface* 
++get_image(): SDL_Surface* 
++get_position(): SDL_Rect*
++get_position_obj(const int indice): SDL_Rect*
++get_type_obj(const int indice): const int 
++set_type_obj(const int indice,const int t): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>392</y>
+      <w>92</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;60.0;210.0;60.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>648</x>
+      <y>244</y>
+      <w>84</w>
+      <h>116</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Sprite
+
+--
+-im: int
+-x: int
+-y: int
+-vx: int
+-vy: int
+--
++get_im(): int
++set_im(int im_new): void
++get_x(): int
++set_x(int im_new): void
++get_y(): int
++set_y(int im_new): void
++get_vx(): int
++set_vx(int im_new): void
++get_vy(): int
++set_vy(int im_new): void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>92</x>
+      <y>600</y>
+      <w>84</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Objet_meca
+--
+Objet_meca(int x1,int y1)
+Objet_meca()
++set_image(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>284</x>
+      <y>600</y>
+      <w>84</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Objet_arme
+--
+Objet_arme(int x1,int y1)
+Objet_arme()
++set_image(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>188</x>
+      <y>596</y>
+      <w>84</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Objet_elec
+--
+Objet_elec(int x1,int y1)
+Objet_elec()
++set_image(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>436</y>
+      <w>136</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Objet
+--
+#position: SDL_Rect 
+#image: SDL_Surface *
+#type: int
+--
+Objet()
+Objet(const Objet&amp; ob)
+Objet(int x1,int y1,std::string path,int ty)
+~Objet()
++get_x() const: int 
++get_y() const: int 
++get_type() const: int 
++set_type(const int t): void 
++set_x(const int x1):	void 
++set_y(const int y1): void 
++set_x(const int x1): void 
++set_y(const int y1): void 
++get_image(): SDL_Surface* 
++get_position(): SDL_Rect* 
++collision (const Objet&amp; ob) const: int
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>468</x>
+      <y>460</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Avatar_humain
+--
++set_x1(): void
++set_y1(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>572</x>
+      <y>460</y>
+      <w>84</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>_object: Class_Avatar_IA
+--
++set_x1(): void
++set_y1(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>512</x>
+      <y>436</y>
+      <w>12</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>588</x>
+      <y>436</y>
+      <w>12</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>192</y>
+      <w>12</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>568</x>
+      <y>192</y>
+      <w>16</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+2
+</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>192</y>
+      <w>188</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;40.0;450.0;40.0;450.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>568</y>
+      <w>44</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;80.0;10.0;30.0;90.0;30.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>220</x>
+      <y>568</y>
+      <w>12</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>568</y>
+      <w>72</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;80.0;160.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
